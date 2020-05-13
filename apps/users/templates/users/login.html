@@ -1,0 +1,49 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Entregas</title>
+  <meta name="description" content="Deliveries Tecnoquimicas">
+  <meta name="edson_ramos" content="SitePoint">
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="{% static 'users/login.css' %}" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="height: 100%;padding-top: 25vh;">
+  <section class="login-block">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 login-sec">
+          <h2 class="text-center">Entregas</h2>
+          <form class="login-form" method="POST" action="{% url 'users:login' %}">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="text-uppercase">{{ form.username.label }}</label>
+              {{ form.username|add_class:'form-control' }}
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1" class="text-uppercase">{{ form.password.label }}</label>
+              {{ form.password|add_class:'form-control' }}
+            </div>
+
+
+            <div class="form-check">
+              <button type="submit" class="btn btn-login float-right">Entrar</button>
+            </div>
+            {% csrf_token %}
+          </form>
+        </div>
+        <div class="col-md-8 banner-sec" style="background-image: url('{% static 'users/login.jpg' %}')">
+        </div>
+      </div>
+  </section>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</body>
+
+</html>
