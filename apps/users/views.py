@@ -53,7 +53,7 @@ class LoginView(TemplateView):
         if back:
             return HttpResponseRedirect(back)
             
-        return redirect('commons:home')
+        return redirect('product:list')
 
         
 
