@@ -1,28 +1,12 @@
 {% extends "product/base.html" %}
+{% load bootstrap4 %}
 
 {% block content %}
-<form action="" method="post" autocomplete="off">
+<form action="" method="post">
     {% csrf_token %}
-    {{form.code}}
-    {{form.description}}
-    <div class="row">
-        <div class="col-md-4">
-            {{form.presentation}}
-        </div>
-        <div class="col-md-4">
-            {{form.corrugated_quantity}}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8">
-            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
-                Agregar</button>
-        </div>
-        <div class="col-md-4">
-            <a href="{% url 'product_list' %}" class="btn btn-secondary btn-block btn-lg">
-                <i class="fas fa-stream"></i> Atrás
-            </a>
-        </div>
-    </div>
+    {% bootstrap_form  form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    {% endbuttons %}
 </form>
 {% endblock content %}

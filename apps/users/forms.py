@@ -5,10 +5,3 @@ from .models import User
 class LoginForm(forms.Form):
     username = forms.CharField(label=_('Usuario'),max_length=40,min_length=1)
     password = forms.CharField(label=_('Contraseña'),widget=forms.PasswordInput,min_length=1)
-
-class EmpleadoForm(forms.ModelForm):
-    
-    class Meta:
-
-        model = User
-        fields = ('code','fullname','area','birth_date','is_base')
