@@ -1,0 +1,31 @@
+{% extends "commons/base.html" %}
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Codigo Producto</td>
+            <td>Lista de Empaque</td>
+            <td>Cantidad</td>
+            <td>Quien entrega</td>
+            <td>Quien recibe</td>
+            <td>Fecha</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for object in object_list %}
+        <tr>
+            <td>{{object.product}}</td>
+            <td>{{object.packing_list}}</td>
+            <td>{{object.quantity}}</td>
+            <td>{{object.deliver}}</td>
+            <td>{{object.receiver}}</td>
+            <td>{{object.check_date}}</td>
+            <td><a href="{% url 'checklist:checklist_update' object.pk %}" class="btn text-secondary px-0"><i
+                        class="far fa-edit fa-lg"></i></a></td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
