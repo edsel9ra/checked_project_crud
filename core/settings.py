@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'apps.users',
     'apps.commons',
-    'apps.product'
+    'apps.product',
+    'apps.checklist'
 ]
 
 MIDDLEWARE = [

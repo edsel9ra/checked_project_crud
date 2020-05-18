@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/',include('apps.users.urls')),
     path('product/',include('apps.product.urls')),
-    path('',include('apps.commons.urls'))
+    path('checklist/',include('apps.checklist.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

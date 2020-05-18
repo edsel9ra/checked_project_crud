@@ -1,0 +1,65 @@
+{% extends "commons/base.html" %}
+{% load bootstrap4 %}
+{% load i18n %}
+{% load widget_tweaks %}
+
+{% block content %}
+{{ formset_checkedproduct.media.js }}
+{{ formset_checkedproduct.media.css }}
+<form action="" method="post">
+    {% csrf_token %}
+    {% bootstrap_form  form %}
+    
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        {% trans 'Producto' %}
+                    </th>
+                    <th>
+                        {% trans 'Lista de Paquete' %}
+                    </th>
+                    <th>
+                        {% trans 'Cantidad' %}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ formset_checkedproduct.management_form }}
+                {% for form_checkedproduct in formset_checkedproduct %}
+                <tr class="form_checkedproduct_row">
+                    {% for field in form_checkedproduct.visible_fields %}
+                    <td>
+                        {% if forloop.first %}
+                            {% for hidden in form.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                        {% endif %}
+                        {{ field.errors.as_ul }}
+                        {{ field|add_class:'form-control' }}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="button-group text-right">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</form>
+
+{% endblock content %}
+{% block scripts %}
+<script type="text/javascript">
+    $(function() {
+      $('.form_checkedproduct_row').formset({
+        prefix: '{{ formset_checkedproduct.prefix }}',
+        deleteText : '<button class="btn btn-sm btn-danger"><i class="fas fa-trash"></button>',
+        addText : '<button class="btn btn-sm btn-primary"><i class="fas fa-plus-circle mr-2"></i> {% trans "Agregar" %}</button>'
+      });
+    })
+  </script>
+{% endblock %}
