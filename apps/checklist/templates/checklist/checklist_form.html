@@ -9,7 +9,7 @@
 <form action="" method="post">
     {% csrf_token %}
     {% bootstrap_form  form %}
-    
+
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -18,7 +18,7 @@
                         {% trans 'Producto' %}
                     </th>
                     <th>
-                        {% trans 'Lista de Paquete' %}
+                        {% trans 'Lista de Empaque' %}
                     </th>
                     <th>
                         {% trans 'Cantidad' %}
@@ -32,9 +32,9 @@
                     {% for field in form_checkedproduct.visible_fields %}
                     <td>
                         {% if forloop.first %}
-                            {% for hidden in form.hidden_fields %}
-                                {{ hidden }}
-                            {% endfor %}
+                        {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                        {% endfor %}
                         {% endif %}
                         {{ field.errors.as_ul }}
                         {{ field|add_class:'form-control' }}
@@ -47,6 +47,7 @@
     </div>
 
     <div class="button-group text-right">
+        <button type="reset" class="btn btn-danger">Limpiar Campos</button>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
 </form>
@@ -54,12 +55,12 @@
 {% endblock content %}
 {% block scripts %}
 <script type="text/javascript">
-    $(function() {
-      $('.form_checkedproduct_row').formset({
-        prefix: '{{ formset_checkedproduct.prefix }}',
-        deleteText : '<button class="btn btn-sm btn-danger"><i class="fas fa-trash"></button>',
-        addText : '<button class="btn btn-sm btn-primary"><i class="fas fa-plus-circle mr-2"></i> {% trans "Agregar" %}</button>'
-      });
+    $(function () {
+        $('.form_checkedproduct_row').formset({
+            prefix: '{{ formset_checkedproduct.prefix }}',
+            deleteText: '<button class="btn btn-sm btn-danger"><i class="fas fa-trash"></button>',
+            addText: '<button class="btn btn-sm btn-primary"><i class="fas fa-plus-circle mr-2"></i> {% trans "Agregar" %}</button>'
+        });
     })
-  </script>
+</script>
 {% endblock %}

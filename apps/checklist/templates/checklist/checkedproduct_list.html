@@ -1,0 +1,24 @@
+{% extends "commons/base.html" %}
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Código Producto</td>
+            <td>Lista de Empaque</td>
+            <td>Cantidad</td>
+        </tr>
+    </thead>
+    <tbody>
+            {% for object in object_list %}
+            <tr>
+                <td>{{object.product}}</td>
+                <td>{{object.packing_list}}</td>
+                <td>{{object.quantity}}</td>
+                <td><a></a></td>
+
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

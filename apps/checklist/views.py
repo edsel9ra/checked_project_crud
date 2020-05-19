@@ -3,30 +3,36 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, UpdateView, CreateView
 from django.urls import reverse_lazy
-from .models import CheckList
-from .forms import CheckListForm,CheckedProductFormSet
+from .models import CheckList, CheckedProduct
+from .forms import CheckListForm, CheckedProductFormSet, CheckedProductForm
 
-@method_decorator(login_required,name='dispatch')
+
+@method_decorator(login_required, name='dispatch')
 class CheckOutList(ListView):
     name = 'check_out_list'
     model = CheckList
 
-@method_decorator(login_required,name='dispatch')
+class CheckProductList(ListView):
+    name = 'checked_product_list'
+    model = CheckedProduct
+
+
+@method_decorator(login_required, name='dispatch')
 class CheckListCreate(CreateView):
     name = 'create'
     model = CheckList
     form_class = CheckListForm
 
     def get_success_url(self):
-        return reverse_lazy('product:list')
-    
-    def get_checkedproduct_form_kwargs(self):
-        if self.request.method in ('POST','PUT'):
-            return CheckedProductFormSet(instance=self.object,prefix='checkedproduct',data=self.request.POST,files=self.request.FILES)
-        else:
-            return CheckedProductFormSet(instance=self.object,prefix='checkedproduct')
+        return reverse_lazy('checklist:check_out_list')
 
-    def get_context_data(self,**kwargs):
+    def get_checkedproduct_form_kwargs(self):
+        if self.request.method in ('POST', 'PUT'):
+            return CheckedProductFormSet(instance=self.object, prefix='checkedproduct', data=self.request.POST, files=self.request.FILES)
+        else:
+            return CheckedProductFormSet(instance=self.object, prefix='checkedproduct')
+
+    def get_context_data(self, **kwargs):
         context = super(CheckListCreate, self).get_context_data()
         context['formset_checkedproduct'] = self.get_checkedproduct_form_kwargs()
         return context
@@ -51,13 +57,24 @@ class CheckListCreate(CreateView):
         else:
             return self.form_invalid(form)
 
-        return response 
+        return response
 
-@method_decorator(login_required,name='dispatch')
+
+@method_decorator(login_required, name='dispatch')
 class CheckListUpdate(UpdateView):
     name = 'check_list_update'
     model = CheckList
     form_class = CheckListForm
 
     def get_success_url(self):
-        return reverse_lazy('product:check_out_list')
+        return reverse_lazy('checklist:check_out_list')
+
+
+@method_decorator(login_required, name='dispatch')
+class CheckedProductUpdate(UpdateView):
+    name = 'check_product_update'
+    model = CheckedProduct
+    form_class = CheckedProductForm
+
+    def get_success_url(self):
+        return reverse_lazy('checklist:check_out_list')
