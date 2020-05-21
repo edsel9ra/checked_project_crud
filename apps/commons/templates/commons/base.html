@@ -1,48 +1,89 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Productos</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+        <script src="{% static 'formset_bootstrap/js/jquery.formset.js' %}" type="text/javascript"></script>
+        <style>
+            .nav-link {
+                color: #ffffff !important;
+            }
+            .navbar-brand {
+                color: #ffffff !important;
+            }
+            .navbar {
+                background-color: #4397E9 !important;
+            }
+            .nav-item {
+                margin-right: 3rem;
+            }
+            #footer {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 3rem;
+                background-color: #4397E9 !important;
+                color: #ffffff !important;
+                text-align: center;
+                padding: 1rem;
+            }
+            #logo {
+                width: 30px;
+            }
+            .h4 {
+                color: #003459 !important;
+            }
+        </style>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <script src="{% static 'formset_bootstrap/js/jquery.formset.js' %}" type="text/javascript"></script>
-</head>
-
-<body>
-    <div class="container">
-        <div class="col-md-10 offset-md-1 mt-5">
-            <div class="jumbotron">
-                <h1 class="display-4">Lista Chequeo</h1>
-                <hr class="my-4">
-                {% block content %}
-
-                {% endblock content %}
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-info">
+            <a class="navbar-brand mr-5" href="#"><img id="logo" src="{% static 'commons/logo.png' %}" class="rounded" alt="..."> Control Productos</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_elements">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar_elements">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-users"></i> Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'product:list' %}"><i class="fas fa-book"></i> Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'checklist:check_out_list' %}"><i class="fas fa-check-square"></i> Chequeos</a>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
+        </nav>
+        <section class="container-fluid p-5">
+            {% block content %}
+            {% endblock %}
+        </section>
+        <footer id="footer">
+            © 2020. Tecnoquímicas
+        </footer>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.formset/1.2.2/jquery.formset.min.js" 
-        integrity="sha256-aYNWW6ZqiatPVPmCJdQwbA3us7Qud3ft+yUViBuCIps=" 
-        crossorigin="anonymous"></script>
-    {% block scripts %}
-    {% endblock %}
-</body>
-
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.formset/1.2.2/jquery.formset.min.js" 
+            integrity="sha256-aYNWW6ZqiatPVPmCJdQwbA3us7Qud3ft+yUViBuCIps=" 
+            crossorigin="anonymous"></script>
+        {% block scripts %}
+        {% endblock %}
+    </body>
 </html>

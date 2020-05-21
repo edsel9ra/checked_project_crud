@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 @method_decorator(login_required,name='dispatch')
 class HomeView(TemplateView):
-    name = 'home'
-    template_name = 'commons/home.html'
+    name = 'index'
+    template_name = 'commons/index.html'
 
 
