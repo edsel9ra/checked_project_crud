@@ -1,24 +1,25 @@
 {% extends "commons/base.html" %}
 {% block content %}
-<table class="table table-borderless">
-    <thead class="border-bottom font-weight-bold">
-        <tr>
-            <td>Código Producto</td>
-            <td>Lista de Empaque</td>
-            <td>Cantidad</td>
-        </tr>
-    </thead>
-    <tbody>
+<h4 class="mt-4">Productos Chequeados</h4>
+<div class="table-responsive">
+    <a href="{% url 'checklist:check_out_list' %}"><button class="btn btn-warning"><i class="fas fa-arrow-left"></i> Regresar</button></a>
+    <table class="table table-borderless" id="dataTable" width="100%" cellspacing="0">
+        <thead class="border-bottom font-weight-bold text-center">
+            <tr>
+                <th>Código Producto</th>
+                <th>Lista de Empaque</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
             {% for object in object_list %}
             <tr>
                 <td>{{object.product}}</td>
                 <td>{{object.packing_list}}</td>
                 <td>{{object.quantity}}</td>
-                <td><a></a></td>
-
             </tr>
             {% endfor %}
-    </tbody>
-</table>
-
+        </tbody>
+    </table>
+</div>
 {% endblock content %}
