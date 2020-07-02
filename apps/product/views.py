@@ -12,6 +12,15 @@ class ProductList(ListView):
     model = Product
 
 @method_decorator(login_required,name='dispatch')
+class ProductCreate(CreateView):
+    name = 'create'
+    model = Product
+    form_class = ProductForm
+
+    def get_success_url(self):
+        return reverse_lazy('product:list')
+
+@method_decorator(login_required,name='dispatch')
 class ProductUpdate(UpdateView):
     name = 'update'
     model = Product
@@ -19,3 +28,4 @@ class ProductUpdate(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('product:list')
+
