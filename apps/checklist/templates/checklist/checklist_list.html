@@ -22,9 +22,11 @@
                 <td>{{object.receiver}}</td>
                 <td>{{object.check_date}}</td>
                 <td>
-                    <div class="button-group text-center"><a href="{% url 'checklist:checked_product_list' %}"><button
+                    <div class="button-group text-center"><a href="{% url 'checklist:checked_product_list' object.pk %}"><button
                                 class="btn btn-primary">Listar Productos</button></a></div>
                 </td>
+                <td><div class="button-group text-center"><a href="{% url 'checklist:check_list_update' object.pk %}"><button
+                    class="btn btn-primary">Modificar</button></a></div></td>
             </tr>
             {% endfor %}
         </tbody>

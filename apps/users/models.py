@@ -8,3 +8,6 @@ class User(AbstractUser):
     area = models.CharField(max_length=25,verbose_name=_('Area'),blank=True,null=True)
     birth_date = models.DateField(verbose_name=_('Fecha Nacimiento'),default=now)
     is_base = models.BooleanField(verbose_name=_('Es Base'),default=False)
+
+    def __str__(self):
+        return '%s %s' % (self.first_name, self.last_name)

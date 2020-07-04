@@ -65,7 +65,7 @@ class CheckListUpdate(UpdateView):
     name = 'check_list_update'
     model = CheckList
     form_class = CheckListForm
-
+    
     def get_success_url(self):
         return reverse_lazy('checklist:check_out_list')
 

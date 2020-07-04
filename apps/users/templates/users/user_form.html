@@ -1,0 +1,12 @@
+{% extends "commons/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {% bootstrap_form  form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary"><i class="fas fa-database"></i> Guardar</button>
+    {% endbuttons %}
+</form>
+{% endblock content %}

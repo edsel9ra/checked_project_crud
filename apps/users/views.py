@@ -1,9 +1,12 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView
-from apps.users.forms import LoginForm
+from django.views.generic import TemplateView, CreateView, UpdateView, ListView
+from .models import User
+from apps.users.forms import LoginForm, UserForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 
 class LoginView(TemplateView):
     name = 'login'
@@ -53,8 +56,16 @@ class LoginView(TemplateView):
         if back:
             return HttpResponseRedirect(back)
             
-        return redirect('product:list')
+        return redirect('checklist:check_out_list')
 
+@method_decorator(login_required,name='dispatch')
+class UserCreate(CreateView):
+    name = 'create'
+    model = User
+    form_class = UserForm
+
+    def get_success_url(self):
+        return reverse_lazy('checklist:check_out_list')
         
 
 
