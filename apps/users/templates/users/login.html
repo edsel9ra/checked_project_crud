@@ -4,46 +4,92 @@
 <html lang="es">
 
 <head>
-  <meta charset="utf-8">
-
-  <title>Entregas</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="Deliveries Tecnoquimicas">
   <meta name="edson_ramos" content="SitePoint">
-
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <link href="{% static 'users/login.css' %}" rel="stylesheet" type="text/css">
-
+  <title>Sistema de Chequeo Cendis TQ</title>
+  <link href="{% static 'commons/css/styles.css' %}" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
+    crossorigin="anonymous"></script>
 </head>
 
-<body style="height: 100%;padding-top: 25vh;">
-  <section class="login-block">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 login-sec">
-          <h2 class="text-center">Entregas</h2>
-          <form class="login-form" method="POST" action="{% url 'users:login' %}">
-            <div class="form-group">
-              <label for="exampleInputEmail1" class="text-uppercase">{{ form.username.label }}</label>
-              {{ form.username|add_class:'form-control' }}
+<body class="bg-primary">
+  <div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+      <main>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-5">
+              <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header">
+                  <h3 class="text-center font-weight-light my-4">Ingreso a SCU Cendis
+                    <img id="logo" src="{% static 'commons/logo.png' %}" class="rounded" alt="...">
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <form class="login-form" method="POST" action="{% url 'users:login' %}">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1" class="text-uppercase">{{ form.username.label }}</label>
+                      {{ form.username|add_class:'form-control' }}
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1" class="text-uppercase">{{ form.password.label }}</label>
+                      {{ form.password|add_class:'form-control' }}
+                    </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox"><input class="custom-control-input"
+                          id="rememberPasswordCheck" type="checkbox" /><label class="custom-control-label"
+                          for="rememberPasswordCheck">Recordar {{ form.password.label }}</label></div>
+                    </div>
+                    <div class="form-check">
+                      <button type="submit" class="btn btn-primary float-right">Entrar</button>
+                    </div>
+                    {% csrf_token %}
+                  </form>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1" class="text-uppercase">{{ form.password.label }}</label>
-              {{ form.password|add_class:'form-control' }}
-            </div>
-
-
-            <div class="form-check">
-              <button type="submit" class="btn btn-login float-right">Entrar</button>
-            </div>
-            {% csrf_token %}
-          </form>
+          </div>
         </div>
-        <div class="col-md-8 banner-sec" style="background-image: url('{% static 'users/login.jpg' %}')">
+      </main>
+    </div>
+    <div id="layoutAuthentication_footer">
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Tecnoquímicas &copy; 2020</div>
+            <div>
+              <a href="#">Politicas de Privacidad</a>
+              &middot;
+              <a href="#">Terminos &amp; Condiciones</a>
+            </div>
+          </div>
         </div>
-      </div>
+      </footer>
+    </div>
+  </div>
+
   </section>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.formset/1.2.2/jquery.formset.min.js"
+    integrity="sha256-aYNWW6ZqiatPVPmCJdQwbA3us7Qud3ft+yUViBuCIps=" crossorigin="anonymous"></script>
+  <script src="{% static 'commons/js/scripts.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

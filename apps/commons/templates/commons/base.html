@@ -22,15 +22,10 @@
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'checklist:check_out_list' %}"><img id="logo" src="{% static 'commons/logo.png' %}" class="rounded"
-                alt="...">   Sistema de Chequeo<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle"
-                href="#"><i class="fas fa-bars"></i></button>
-            
-        <ul class="navbar-nav ml-auto ml-md-0">
-            <li class="nav-item dropdown">
-                <a></a>
-            </li>
-        </ul>
+        <a class="navbar-brand" href="{% url 'checklist:check_out_list' %}"><img id="logo"
+                src="{% static 'commons/logo.png' %}" class="rounded" alt="..."> Sistema de Chequeo <button
+                class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
+                    class="fas fa-bars"></i></button></a>
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
@@ -42,14 +37,14 @@
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios"
                             aria-expanded="false" aria-controls="collapseUsuarios">
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                            Usuarios
+                            Empleados
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <!-- Muestra las opciones que puede hacer en el menu de usuarios-->
                         <div class="collapse" id="collapseUsuarios" aria-labelledby="headingOne"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{% url 'users:create' %}">Ingresar</a>
+                                <a class="nav-link" href="{% url 'users:create' %}">Ingresar Empleado</a>
                             </nav>
                         </div>
                         <!-- Menu desplegable de los productos-->
@@ -63,8 +58,8 @@
                         <div class="collapse" id="collapseProductos" aria-labelledby="headingOne"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{% url 'product:list' %}">Listar</a>
-                                <a class="nav-link" href="{% url 'product:create' %}">Ingresar</a>
+                                <a class="nav-link" href="{% url 'product:list' %}">Listar Productos</a>
+                                <a class="nav-link" href="{% url 'product:create' %}">Ingresar Producto</a>
                             </nav>
                         </div>
                         <!-- Menu desplegable de los chequeos-->
@@ -82,9 +77,13 @@
                                 <a class="nav-link" href="{% url 'checklist:create' %}">Ingresar</a>
                             </nav>
                         </div>
+                        <a class="nav-link" href="{% url 'users:logout' %}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                            Salir del Sistema
+                        </a>
                     </div>
                 </div>
-                
+
             </nav>
         </div>
         <div id="layoutSidenav_content">
