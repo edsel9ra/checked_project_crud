@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+#from django.shortcuts import render, redirect
 from django.views.generic import ListView, UpdateView, CreateView
 from .models import Product
 from .forms import ProductForm

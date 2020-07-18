@@ -8,4 +8,4 @@ class Product(models.Model):
     corrugated_quantity = models.IntegerField(verbose_name=_('Unidades Corrugadas'))
 
     def __str__(self):
-        return str(self.code)
+        return '%s - %s' % (self.code, self.description)

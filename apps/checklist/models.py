@@ -12,6 +12,6 @@ class CheckList(models.Model):
 class CheckedProduct(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE,verbose_name=_('Producto'))
     checklist = models.ForeignKey(CheckList,on_delete=models.CASCADE,verbose_name=_('Lista Chequeo'))
-    packing_list = models.CharField(max_length=25,verbose_name=_('Lista Empaque'),blank=True,null=True)
-    quantity = models.IntegerField(verbose_name=_('Cantidad Chequeo'))
+    packing_list = models.CharField(max_length=25,verbose_name=_('Lista de Empaque'),blank=True,null=True)
+    quantity = models.IntegerField(verbose_name=_('Corrugadas Chequeadas'))
 

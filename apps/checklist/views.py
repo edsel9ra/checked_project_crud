@@ -1,4 +1,4 @@
-from django.shortcuts import render
+#from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, UpdateView, CreateView
@@ -8,13 +8,10 @@ from .forms import CheckListForm, CheckedProductFormSet, CheckedProductForm
 
 
 @method_decorator(login_required, name='dispatch')
-class CheckOutList(ListView):
-    name = 'check_out_list'
-    model = CheckList
-
 class CheckProductList(ListView):
     name = 'checked_product_list'
     model = CheckedProduct
+    paginate_by = 5 #22 original del formato
 
 
 @method_decorator(login_required, name='dispatch')
@@ -24,7 +21,7 @@ class CheckListCreate(CreateView):
     form_class = CheckListForm
 
     def get_success_url(self):
-        return reverse_lazy('checklist:check_out_list')
+        return reverse_lazy('checklist:checked_product_list')
 
     def get_checkedproduct_form_kwargs(self):
         if self.request.method in ('POST', 'PUT'):
@@ -67,7 +64,7 @@ class CheckListUpdate(UpdateView):
     form_class = CheckListForm
     
     def get_success_url(self):
-        return reverse_lazy('checklist:check_out_list')
+        return reverse_lazy('checklist:checked_product_list')
 
 
 @method_decorator(login_required, name='dispatch')
@@ -77,4 +74,4 @@ class CheckedProductUpdate(UpdateView):
     form_class = CheckedProductForm
 
     def get_success_url(self):
-        return reverse_lazy('checklist:check_out_list')
+        return reverse_lazy('checklist:checked_product_list')

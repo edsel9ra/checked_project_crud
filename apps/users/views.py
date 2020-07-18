@@ -1,13 +1,12 @@
-from django.views.generic import TemplateView, CreateView, UpdateView, ListView, View
-from .models import User
-from apps.users.forms import LoginForm, UserForm
 from django.shortcuts import render, redirect
+from django.views.generic import TemplateView, CreateView, View
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-
+from apps.users.forms import LoginForm, UserForm
+from .models import User
 
 class LoginView(TemplateView):
     name = 'login'
@@ -23,7 +22,7 @@ class LoginView(TemplateView):
             }
         )
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         form = LoginForm(request.POST)
 
         if not form.is_valid():
@@ -58,7 +57,7 @@ class LoginView(TemplateView):
         if back:
             return HttpResponseRedirect(back)
 
-        return redirect('checklist:check_out_list')
+        return redirect('checklist:checked_product_list')
 
 
 @method_decorator(login_required, name='dispatch')
@@ -68,12 +67,12 @@ class UserCreate(CreateView):
     form_class = UserForm
 
     def get_success_url(self):
-        return reverse_lazy('checklist:check_out_list')
+        return reverse_lazy('checklist:checked_product_list')
 
 
 @method_decorator(login_required, name='dispatch')
 class LogoutView(View):
     
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         logout(request)
         return redirect('users:login')

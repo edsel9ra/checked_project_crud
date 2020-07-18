@@ -1,6 +1,5 @@
 {% extends "commons/base.html" %}
 {% block content %}
-<a href="{% url 'checklist:check_out_list' %}"><button class="btn btn-warning"><i class="fas fa-arrow-left"></i> Regresar</button></a>
 <h4 class="mt-4">Productos Chequeados</h4>
 <div class="table-responsive">
     <table class="table table-borderless" id="dataTable" width="100%" cellspacing="0">
@@ -9,6 +8,9 @@
                 <th>Código Producto</th>
                 <th>Lista de Empaque</th>
                 <th>Cantidad</th>
+                <th>Quien entrega</th>
+                <th>Quien recibe</th>
+                <th>Fecha y Hora</th>
             </tr>
         </thead>
         <tbody class="text-center">
@@ -16,12 +18,34 @@
             <tr>
                 <td>{{object.product}}</td>
                 <td>{{object.packing_list}}</td>
-                <td>{{object.quantity}}</td>
+                <td>{{object.quantity}} X {{object.product.corrugated_quantity}}</td>
+                <td>{{object.checklist.deliver}}</td>
+                <td>{{object.checklist.receiver}}</td>
+                <td>{{object.checklist.check_date}}</td>
                 <td><div class="button-group text-center"><a href="{% url 'checklist:check_product_update' object.pk %}"><button
-                    class="btn btn-primary">Modificar</button></a></div></td>
+                    class="btn btn-primary">Modificar Producto</button></a></div></td>
+                    <td><div class="button-group text-center"><a href="{% url 'checklist:check_list_update' object.checklist.pk %}"><button
+                        class="btn btn-primary">Modificar Chequeo</button></a></div></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Primera</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+        {% endif %}
+    </span>
 </div>
 {% endblock content %}
