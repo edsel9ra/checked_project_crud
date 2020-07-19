@@ -56,17 +56,6 @@ class CheckListCreate(CreateView):
 
         return response
 
-
-@method_decorator(login_required, name='dispatch')
-class CheckListUpdate(UpdateView):
-    name = 'check_list_update'
-    model = CheckList
-    form_class = CheckListForm
-    
-    def get_success_url(self):
-        return reverse_lazy('checklist:checked_product_list')
-
-
 @method_decorator(login_required, name='dispatch')
 class CheckedProductUpdate(UpdateView):
     name = 'check_product_update'
